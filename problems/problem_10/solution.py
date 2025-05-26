@@ -1,11 +1,9 @@
 def add_digit_arrays(a: list[int], b: list[int]) -> list[int]:
     p = lambda y: 10 ** y
     rev = lambda lst: enumerate(reversed(lst))
-    digits = lambda x: [int(i) for i in x]
+    digits = lambda lst: [int(i) for i in lst]
 
     return digits(str(sum(a * p(i) for i, a in rev(a)) + sum(b * p(i) for i, b in rev(b))))
-
-    #return [int(r) for r in str(sum(a * p(i) for i, a in rev(a)) + sum(b * p(i) for i, b in rev(b)))]
 
 # More inaccuracies in large quantities
 # def add_digit_arrays(a: list[int], b: list[int]) -> list[int]:
