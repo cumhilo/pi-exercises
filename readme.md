@@ -11,10 +11,10 @@ Adicionalmente, en el directorio `/problems/` se encuentran los siguientes archi
 
 * `main.py`: Contiene las pruebas y/o importaciones de las soluciones de cada problema.
 * `utils.py`: Contiene scripts o funciones comunes que son usadas por diferentes soluciones para ahorrar tiempo y evitar la repetición de código.
-* `combined.py`Contiene todos las funciones de los diez problemas, combinadas en un solo archivo.
+* `combined.py`Contiene todas las funciones de los diez problemas, combinadas en un solo archivo.
 
 > [!CAUTION]
-> Antes de ejecutar los tests recomiendo leer el [arhcivo de errores](./errors.md)
+> Antes de ejecutar los tests recomiendo leer el [archivo de errores](./errors.md)
 
 
 ## Ejecutar
