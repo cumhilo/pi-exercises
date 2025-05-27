@@ -1,39 +1,32 @@
+import re
 from datetime import datetime as dt
 
-# TODO: improve the code
+date_pattern = re.compile(r"^\d{2}/\d{2}/\d{4}$")
+
+
 def read_valid_dates(file_path: str) -> list[str]:
     try:
         f = open(file_path, "r")
     except FileNotFoundError:
-        raise FileNotFoundError(file_path)
+        raise FileNotFoundError(f"Specified path: '{file_path}' doesn't exists")
 
     dates = []
-    for line in f:
+    for i, line in enumerate(f):
         line = line.strip()
-        split = line.split("/")
 
-        # EXTRA NOT NEEDED CHECKS
-        if len(split) != 3 or len(line) != len("dd/mm/yyyy"):
-            continue
-
-        try:
-            day = int(split[0])
-            month = int(split[1])
-            year = int(split[2])
-
-            if day < 1 or month < 1 or year < 1:
-                continue
-
-            if day > 31 or month > 12:
-                continue
-        except ValueError:
+        if date_pattern.fullmatch(line) is None:
+            print(error(i, line, "it doesn't match de pattern dd/mm/yyyy"))
             continue
 
         try:
             date = dt.strptime(line, "%d/%m/%Y")
             dates.append(date)
-        except ValueError:
-            continue
+        except ValueError as e:
+            print(error(i, line, e))
 
     dates.sort()
     return [d.date().isoformat() for d in dates]
+
+
+def error(index, line, reason) -> str:
+    return f"WARNING | Malformed line #{index} @ ({line}) due {reason}"
